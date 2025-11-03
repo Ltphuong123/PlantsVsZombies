@@ -23,7 +23,7 @@ public class Spikeweed : AttackPlant
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRank, attackLayer);
         foreach (var hit in hits)
         {
-            Zombie zombie = hit.gameObject.GetComponent<Zombie>();
+            ZombieBase zombie = hit.gameObject.GetComponent<ZombieBase>();
 
             if (zombie != null)
             {
@@ -37,7 +37,7 @@ public class Spikeweed : AttackPlant
         return attackRate;
     }
 
-    public override Zombie FineZombieInRange()
+    public override ZombieBase FineZombieInRange()
     {
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position - new Vector3(0.2f,0.2f,0f),
@@ -47,7 +47,7 @@ public class Spikeweed : AttackPlant
         );
         if (hit.collider != null)
         {
-            targetZombie = hit.collider.GetComponent<Zombie>();
+            targetZombie = hit.collider.GetComponent<ZombieBase>();
 
             return targetZombie;
         }

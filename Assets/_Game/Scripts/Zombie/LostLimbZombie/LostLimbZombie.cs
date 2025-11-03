@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LostLimbZombie : Zombie
+public class LostLimbZombie : ZombieBase
 {
     [SerializeField] private GameObject zombieGibObj;
     [SerializeField] private GameObject zombieGibPrefab;

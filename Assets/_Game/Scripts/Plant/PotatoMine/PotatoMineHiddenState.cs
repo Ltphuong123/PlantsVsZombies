@@ -7,7 +7,7 @@ public class PotatoMineHiddenState : PlantState
     private float armTimer;
     private float armTime = 15f;
 
-    public void OnEnter(Plant plant)
+    public void OnEnter(PlantBase plant)
     {
         potatoMine = (PotatoMine)plant;
         potatoMine.ChangeAnim(Constants.ANIM_HIDDEN);
@@ -15,7 +15,7 @@ public class PotatoMineHiddenState : PlantState
         armTime = potatoMine.ArmTime;
     }
 
-    public void OnExecute(Plant plant)
+    public void OnExecute(PlantBase plant)
     {
         armTimer += Time.deltaTime;
         if (armTimer >= armTime)
@@ -28,5 +28,5 @@ public class PotatoMineHiddenState : PlantState
         }
     }
 
-    public void OnExit(Plant plant) {}
+    public void OnExit(PlantBase plant) {}
 }

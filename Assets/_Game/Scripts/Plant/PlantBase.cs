@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Plant : Character
+public abstract class PlantBase : Character
 {
     [SerializeField] protected  PlantType plantType;
     [SerializeField] protected PlantData plantData; 

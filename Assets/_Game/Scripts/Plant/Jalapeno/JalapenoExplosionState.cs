@@ -6,7 +6,7 @@ public class JalapenoExplosionState : PlantState
 {
     private Jalapeno jalapeno;
     private float timer;
-    public void OnEnter(Plant plant)
+    public void OnEnter(PlantBase plant)
     {
         timer = 0f;
         jalapeno = (Jalapeno)plant;
@@ -14,7 +14,7 @@ public class JalapenoExplosionState : PlantState
         SoundManager.Instance.PlaySFX(FX.explosionClip);
     }
     
-    public void OnExecute(Plant plant)
+    public void OnExecute(PlantBase plant)
     {
         timer += Time.deltaTime;
         if (timer >= 0.5f)
@@ -27,7 +27,7 @@ public class JalapenoExplosionState : PlantState
             jalapeno.OnDie();
         }
     }
-    public void OnExit(Plant plant)
+    public void OnExit(PlantBase plant)
     {
     }
 }

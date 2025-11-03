@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Zombie : Character
+public abstract class ZombieBase : Character
 {
     [SerializeField] protected ZombieType zombieType; 
     [SerializeField] private SpriteRenderer[] sprites;
@@ -13,7 +13,7 @@ public abstract class Zombie : Character
     protected float attackRank;
     protected float attackRate;
     protected ZombieState currentState;
-    protected Plant targetPlant;
+    protected PlantBase targetPlant;
 
     public float AttackRank => attackRank;
     public float AttackRate => attackRate;
@@ -75,7 +75,7 @@ public abstract class Zombie : Character
         }
     }
 
-    public virtual Plant FindTargetInRange()
+    public virtual PlantBase FindTargetInRange()
     {
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position,
@@ -85,7 +85,7 @@ public abstract class Zombie : Character
         );
         if (hit.collider != null)
         {
-            targetPlant = hit.collider.GetComponent<Plant>();
+            targetPlant = hit.collider.GetComponent<PlantBase>();
             if (targetPlant != null)
             {
                 return targetPlant;

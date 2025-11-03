@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallNut : Plant
+public class WallNut : PlantBase
 {
     private bool isCracked1;
     public override void OnInit()

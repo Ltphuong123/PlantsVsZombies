@@ -5,7 +5,7 @@ public class PlayController : MonoBehaviour
     [SerializeField] private PlantCartControl plantCartControl;
     [SerializeField] private GameObject shovel;
     private PlantCartData selectedPlantData;
-     private Plant plant;
+     private PlantBase plant;
     private bool isShovel = false;
 
     private Vector3 mouseWorldPos;

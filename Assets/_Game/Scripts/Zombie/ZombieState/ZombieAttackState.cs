@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class ZombieAttackState : ZombieState
 {
-    private Plant targetPlant;
+    private PlantBase targetPlant;
     private float attackTimer;
-    public void OnEnter(Zombie zombie)
+    public void OnEnter(ZombieBase zombie)
     {
         zombie.ChangeAnim(Constants.ANIM_ATTACK);
         attackTimer = 0f;
     }
 
-    public void OnExecute(Zombie zombie)
+    public void OnExecute(ZombieBase zombie)
     {
         targetPlant = zombie.FindTargetInRange();
         if (targetPlant== null|| targetPlant.gameObject.activeSelf==false)
@@ -27,7 +27,7 @@ public class ZombieAttackState : ZombieState
         }
     }
 
-    public void OnExit(Zombie zombie)
+    public void OnExit(ZombieBase zombie)
     {
     }
 }

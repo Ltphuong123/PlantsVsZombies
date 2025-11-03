@@ -7,15 +7,15 @@ public class PlantShooterFireState : PlantState
     private PlantShooter plantShooter;
     private float fireTimer;
 
-    public void OnEnter(Plant plant)
+    public void OnEnter(PlantBase plant)
     {
         plantShooter = (PlantShooter)plant;
         plantShooter.ChangeAnim(Constants.ANIM_FIRE);
         fireTimer = 0;
     }
-    public void OnExecute(Plant plant)
+    public void OnExecute(PlantBase plant)
     {
-        Zombie zombie = plantShooter.FineZombieInRange();
+        ZombieBase zombie = plantShooter.FineZombieInRange();
         if (zombie == null)
         {
             plantShooter.ChangeState(plantShooter.PlantIdleState);
@@ -28,7 +28,7 @@ public class PlantShooterFireState : PlantState
             plantShooter.Fire();
         }
     }
-    public void OnExit(Plant plant)
+    public void OnExit(PlantBase plant)
     {
     }
 }

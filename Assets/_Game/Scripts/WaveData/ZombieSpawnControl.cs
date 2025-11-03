@@ -158,7 +158,7 @@ public class ZombieSpawnControl : MonoBehaviour
             int chosenRowIndex = availableRowIndexes[randomIndexInList];
             availableRowIndexes.RemoveAt(randomIndexInList);
             Transform spawnPoint = spawnPoints[chosenRowIndex];
-            Zombie zombie = CharacterManager.Instance.SpawnZombie(zombieType, spawnPoint.position, Quaternion.identity);
+            ZombieBase zombie = CharacterManager.Instance.SpawnZombie(zombieType, spawnPoint.position, Quaternion.identity);
             if (zombie != null)
             {
                 zombie.OnInit();

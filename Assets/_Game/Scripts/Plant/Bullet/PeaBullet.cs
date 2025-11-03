@@ -8,9 +8,9 @@ public class PeaBullet :GameUnit
     [SerializeField] private float damage = 20;
     [SerializeField] private float lifeTime = 3f;
     [SerializeField] protected LayerMask attackLayer;
-    private Zombie zombie; 
+    private ZombieBase zombie; 
 
-    public void OnInit(Zombie zombie, float damage, float speed)
+    public void OnInit(ZombieBase zombie, float damage, float speed)
     {
         this.zombie = zombie;
         this.speed = speed;
@@ -28,7 +28,7 @@ public class PeaBullet :GameUnit
 
         if (hit.collider != null)
         {
-            Zombie zombie = hit.collider.GetComponent<Zombie>();
+            ZombieBase zombie = hit.collider.GetComponent<ZombieBase>();
             if (zombie != null)
             {
                 SoundManager.Instance.PlaySFX(FX.BulletHitClip);

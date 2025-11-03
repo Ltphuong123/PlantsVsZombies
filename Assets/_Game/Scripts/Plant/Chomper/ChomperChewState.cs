@@ -5,13 +5,13 @@ public class ChomperChewState : PlantState
 {
     private Chomper chomper;
     private float chewTimer;
-    public void OnEnter(Plant plant)
+    public void OnEnter(PlantBase plant)
     {
         chomper = (Chomper)plant;
         chomper.ChangeAnim(Constants.ANIM_CHEW);
         chewTimer = 0f;
     }
-    public void OnExecute(Plant plant)
+    public void OnExecute(PlantBase plant)
     {
         chewTimer += Time.deltaTime;
         if (chewTimer >= chomper.DigestTime)
@@ -19,7 +19,7 @@ public class ChomperChewState : PlantState
             chomper.ChangeState(chomper.PlantIdleState);
         }
     }
-    public void OnExit(Plant plant)
+    public void OnExit(PlantBase plant)
     {
     }
 }

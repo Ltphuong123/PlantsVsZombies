@@ -6,12 +6,12 @@ public class SquashAttackState : PlantState
 {
     private Squash squash;
     private float timer;
-    private Zombie target;
+    private ZombieBase target;
     private float elapsedTime;
     private Vector2 startPosition;
     private bool isMoving;
 
-    public void OnEnter(Plant plant)
+    public void OnEnter(PlantBase plant)
     {
         squash = (Squash)plant;
         squash.ChangeAnim(Constants.ANIM_ATTACK);
@@ -27,7 +27,7 @@ public class SquashAttackState : PlantState
         isMoving = true;
     }
 
-    public void OnExecute(Plant plant)
+    public void OnExecute(PlantBase plant)
     {
         if (isMoving)
         {
@@ -49,7 +49,7 @@ public class SquashAttackState : PlantState
             squash.OnDie();
         }
     }
-    public void OnExit(Plant plant)
+    public void OnExit(PlantBase plant)
     {
     }
 }

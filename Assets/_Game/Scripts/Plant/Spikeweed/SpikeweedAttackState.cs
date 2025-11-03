@@ -7,16 +7,16 @@ public class SpikeweedAttackState : PlantState
     private float attackRate;
     private Spikeweed spikeweed;
     private float fireTimer;
-    public void OnEnter(Plant plant)
+    public void OnEnter(PlantBase plant)
     {
         spikeweed = (Spikeweed)plant;
         spikeweed.ChangeAnim(Constants.ANIM_ATTACK);
         fireTimer = 0;
         attackRate = spikeweed.AttackRate;
     } 
-    public void OnExecute(Plant plant)
+    public void OnExecute(PlantBase plant)
     {
-        Zombie zombie = spikeweed.FineZombieInRange();
+        ZombieBase zombie = spikeweed.FineZombieInRange();
         if (zombie == null)
         {
             spikeweed.ChangeState(spikeweed.PlantIdleState);
@@ -29,7 +29,7 @@ public class SpikeweedAttackState : PlantState
             spikeweed.Attack();
         }
     }
-    public void OnExit(Plant plant)
+    public void OnExit(PlantBase plant)
     {
     }
 }

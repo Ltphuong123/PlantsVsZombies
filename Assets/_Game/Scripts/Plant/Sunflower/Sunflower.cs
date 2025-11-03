@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Sunflower : Plant
+public class Sunflower : PlantBase
 {
     [SerializeField] private Transform sunSpawnPoint;
     private float productionRate;

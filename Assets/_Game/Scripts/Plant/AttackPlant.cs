@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AttackPlant : Plant
+public abstract class AttackPlant : PlantBase
 {
-    protected Zombie targetZombie;
+    protected ZombieBase targetZombie;
     protected float attackRank;
     public float AttackRank => attackRank;
 
@@ -19,7 +19,7 @@ public abstract class AttackPlant : Plant
         targetZombie = null;
     }
 
-    public virtual Zombie FineZombieInRange()
+    public virtual ZombieBase FineZombieInRange()
     {
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position,
@@ -29,7 +29,7 @@ public abstract class AttackPlant : Plant
         );
         if (hit.collider != null)
         {
-            targetZombie = hit.collider.GetComponent<Zombie>();
+            targetZombie = hit.collider.GetComponent<ZombieBase>();
             return targetZombie;
         }
         return null;

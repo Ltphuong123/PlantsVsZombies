@@ -4,13 +4,13 @@ using UnityEngine;
 public class ZombieDeadState : ZombieState
 {
     private float timer;
-    public void OnEnter(Zombie zombie)
+    public void OnEnter(ZombieBase zombie)
     {
         timer = 0f;
         zombie.ChangeAnim(Constants.ANIM_DEAD);
     }
 
-    public void OnExecute(Zombie zombie)
+    public void OnExecute(ZombieBase zombie)
     {
         timer += Time.deltaTime;
         if (timer >= 1)
@@ -20,7 +20,7 @@ public class ZombieDeadState : ZombieState
         }
     }
 
-    public void OnExit(Zombie zombie)
+    public void OnExit(ZombieBase zombie)
     {
     }
 }

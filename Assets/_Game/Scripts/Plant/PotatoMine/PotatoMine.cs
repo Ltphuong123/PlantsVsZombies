@@ -28,7 +28,7 @@ public class PotatoMine : AttackPlant
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius, attackLayer);
         foreach (var hit in hits)
         {
-            Zombie zombie = hit.gameObject.GetComponent<Zombie>();
+            ZombieBase zombie = hit.gameObject.GetComponent<ZombieBase>();
 
             if (zombie != null)
             {

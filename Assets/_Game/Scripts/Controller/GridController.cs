@@ -14,7 +14,7 @@ public class GridController : MonoBehaviour
     private int numCols = 9;
 
     private Cell[,] cells;
-    private Plant[,] plantedPlants;
+    private PlantBase[,] plantedPlants;
 
     private Vector3 mouseWorldPos;
     private RaycastHit2D[] hits;
@@ -45,7 +45,7 @@ public class GridController : MonoBehaviour
 
     public void OnInit()
     {
-        plantedPlants = new Plant[numCols, numRows];
+        plantedPlants = new PlantBase[numCols, numRows];
     }
     
     public void Update()
@@ -92,7 +92,7 @@ public class GridController : MonoBehaviour
         plantedPlants[x, y] = null;
     }
 
-    public void RevomePlant(Plant plant)
+    public void RevomePlant(PlantBase plant)
     {
         for (int x = 0; x < numCols; x++)
         {
@@ -106,7 +106,7 @@ public class GridController : MonoBehaviour
         }
     }
 
-    public void PlantObjectAt(Cell cell, Plant plant)
+    public void PlantObjectAt(Cell cell, PlantBase plant)
     {
         if (IsCellOccupied(cell)) return;
 

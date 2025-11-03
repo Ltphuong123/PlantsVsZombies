@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jalapeno :  Plant
+public class Jalapeno :  PlantBase
 {
     private float attackDamage;
     private float explosionRadius;
@@ -22,7 +22,7 @@ public class Jalapeno :  Plant
         RaycastHit2D[] hitsRight = Physics2D.RaycastAll(origin, Vector2.right, explosionRadius, attackLayer);
         foreach (var hit in hitsRight)
         {
-            Zombie zombie = hit.collider.GetComponent<Zombie>();
+            ZombieBase zombie = hit.collider.GetComponent<ZombieBase>();
 
             if (zombie != null)
             {
@@ -32,7 +32,7 @@ public class Jalapeno :  Plant
         RaycastHit2D[] hitsLeft = Physics2D.RaycastAll(origin, Vector2.left, explosionRadius, attackLayer);
         foreach (var hit in hitsLeft)
         {
-            Zombie zombie = hit.collider.GetComponent<Zombie>();
+            ZombieBase zombie = hit.collider.GetComponent<ZombieBase>();
 
             if (zombie != null)
             {

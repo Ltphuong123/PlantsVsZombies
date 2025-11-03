@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ZombieState
 {
-    void OnEnter(Zombie zombie);
-    void OnExecute(Zombie zombie);
-    void OnExit(Zombie zombie);
+    void OnEnter(ZombieBase zombie);
+    void OnExecute(ZombieBase zombie);
+    void OnExit(ZombieBase zombie);
 }

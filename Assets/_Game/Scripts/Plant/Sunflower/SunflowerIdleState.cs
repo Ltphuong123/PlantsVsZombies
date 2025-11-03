@@ -6,7 +6,7 @@ public class SunflowerIdleState : PlantState
     private float productionTimer;
     private float productionRate;
 
-    public void OnEnter(Plant plant)
+    public void OnEnter(PlantBase plant)
     {
         sunflower = (Sunflower)plant;
         sunflower.ChangeAnim(Constants.ANIM_IDLE);
@@ -14,7 +14,7 @@ public class SunflowerIdleState : PlantState
         productionRate = sunflower.ProductionRate;
     }
 
-    public void OnExecute(Plant plant)
+    public void OnExecute(PlantBase plant)
     {
         productionTimer += Time.deltaTime;
         sunflower.WaitGenerate(productionTimer);
@@ -25,7 +25,7 @@ public class SunflowerIdleState : PlantState
         }
     }
 
-    public void OnExit(Plant plant)
+    public void OnExit(PlantBase plant)
     {
     }
 }

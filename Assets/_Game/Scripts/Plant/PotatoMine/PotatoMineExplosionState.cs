@@ -6,7 +6,7 @@ public class PotatoMineExplosionState : PlantState
     private PotatoMine potatoMine;
     private float timer;
 
-    public void OnEnter(Plant plant)
+    public void OnEnter(PlantBase plant)
     {
         timer = 0f;
         potatoMine = (PotatoMine)plant;
@@ -14,7 +14,7 @@ public class PotatoMineExplosionState : PlantState
         SoundManager.Instance.PlaySFX(FX.explosionClip);
     }
     
-    public void OnExecute(Plant plant)
+    public void OnExecute(PlantBase plant)
     {
         timer += Time.deltaTime;
         if (timer >= 0.2f)
@@ -26,7 +26,7 @@ public class PotatoMineExplosionState : PlantState
             potatoMine.OnDie();
         }
     }
-    public void OnExit(Plant plant)
+    public void OnExit(PlantBase plant)
     {
     }
 }

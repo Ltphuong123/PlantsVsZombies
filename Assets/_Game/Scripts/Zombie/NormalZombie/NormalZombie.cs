@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NormalZombie : Zombie
+public class NormalZombie : ZombieBase
 {
     public override void OnInit()
     {

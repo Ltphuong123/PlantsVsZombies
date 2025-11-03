@@ -27,7 +27,7 @@ public class Zombiebullet : GameUnit
 
         if (hit.collider != null)
         {
-            Plant plant = hit.collider.GetComponent<Plant>();
+            PlantBase plant = hit.collider.GetComponent<PlantBase>();
             if (plant != null)
             {
                 SoundManager.Instance.PlaySFX(FX.BulletHitClip);

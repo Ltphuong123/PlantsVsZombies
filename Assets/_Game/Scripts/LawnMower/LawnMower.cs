@@ -8,7 +8,7 @@ public class LawnMower : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Zombie zombie = other.GetComponent<Zombie>();
+        ZombieBase zombie = other.GetComponent<ZombieBase>();
 
         if (zombie != null)
         {

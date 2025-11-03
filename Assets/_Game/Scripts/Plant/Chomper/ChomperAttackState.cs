@@ -6,7 +6,7 @@ public class ChomperAttackState : PlantState
     private Chomper chomper;
     private float timer;
 
-    public void OnEnter(Plant plant)
+    public void OnEnter(PlantBase plant)
     {
         chomper = (Chomper)plant;
         chomper.ChangeAnim(Constants.ANIM_ATTACK);
@@ -14,12 +14,12 @@ public class ChomperAttackState : PlantState
         chomper.SetHasEaten(false);
     }
 
-    public void OnExecute(Plant plant)
+    public void OnExecute(PlantBase plant)
     {
         timer += Time.deltaTime;
         if (timer >= 0.6f && !chomper.HasEaten)
         {
-            Zombie target = chomper.FineZombieInRange();
+            ZombieBase target = chomper.FineZombieInRange();
             if (target != null)
             {
                 target.OnDespawn();
@@ -37,7 +37,7 @@ public class ChomperAttackState : PlantState
             chomper.ChangeState(chomper.ChomperChewState);
         }
     }
-    public void OnExit(Plant plant)
+    public void OnExit(PlantBase plant)
     {
     }
 }
