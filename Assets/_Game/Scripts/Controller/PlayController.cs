@@ -5,7 +5,7 @@ public class PlayController : MonoBehaviour
     [SerializeField] private PlantCartControl plantCartControl;
     [SerializeField] private GameObject shovel;
     private PlantCartData selectedPlantData;
-     private PlantBase plant;
+    private PlantBase plant;
     private bool isShovel = false;
 
     private Vector3 mouseWorldPos;
@@ -39,7 +39,6 @@ public class PlayController : MonoBehaviour
                 plant = CharacterManager.Instance.SpawnPlant(selectedPlantData.poolTypePlant, transform.position, Quaternion.identity);
             }
         }
-
     }
 
     public void Shovel()
@@ -100,6 +99,7 @@ public class PlayController : MonoBehaviour
                 Sun sun = hit.collider.GetComponent<Sun>();
                 if (sun != null)
                 {
+                    plantCartControl.AddSun(35);
                     sun.Collect();
                     return;
                 }
@@ -121,7 +121,7 @@ public class PlayController : MonoBehaviour
             }
             gridManager.PlantObjectAt(cell, plant);
             plantCartControl.Startcooldown(selectedPlantData);
-            LevelManager.Instance.AddSun(-selectedPlantData.sunCost);
+            plantCartControl.AddSun(-selectedPlantData.sunCost);
             plant = null;
             selectedPlantData = null;
         }

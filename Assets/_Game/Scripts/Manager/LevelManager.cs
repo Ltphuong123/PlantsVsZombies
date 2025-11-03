@@ -8,13 +8,11 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private LawnMowerController lawnMowerController;
     [SerializeField] private LevelData[] levelDatas;
     private int curLevel = 0;
-    [SerializeField] private int sun;
     [SerializeField] private PlantCartControl plantCartControl;
 
     public void OnInit()
     {
-        sun = 1000;
-        plantCartControl.UpdateSunUI(sun);
+        plantCartControl.OnInitSun(100);
     }
 
     public void OnPlay()
@@ -26,7 +24,7 @@ public class LevelManager : Singleton<LevelManager>
     
     public void OnStart()
     {
-        plantCartControl.UpdateCardAvailability(sun);
+        plantCartControl.UpdateCardAvailability();
     }
 
     public void OnLoadLevel()
@@ -59,15 +57,4 @@ public class LevelManager : Singleton<LevelManager>
         lawnMowerController.OnDespawn();
         SimplePool.CollectAll();
     }
-
-    public void AddSun(int s)
-    {
-        sun += s;
-        plantCartControl.UpdateSunUI(sun);
-    }
-    public int GetSun()
-    {
-        return sun;
-    }
-    
 }

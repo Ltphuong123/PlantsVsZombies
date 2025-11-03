@@ -87,7 +87,6 @@ public class GameManager : Singleton<GameManager>
         SoundManager.Instance.PlaySFX(FX.zombieClip);
         LevelManager.Instance.OnStart();
         ChangeState(GameState.GamePlay);
-        CharacterManager.Instance.ResumAllCharacter();
     }
 
     public void OnPause()

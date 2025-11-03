@@ -41,13 +41,11 @@ public class Sun : GameUnit
 
                 if (Vector3.Distance(transform.position, collectDestination) < 0.1f)
                 {
-                    LevelManager.Instance.AddSun(35);
                     OnDespawn();
                 }
             }
             else
             {
-                LevelManager.Instance.AddSun(35);
                 OnDespawn();
             }
         }

@@ -15,7 +15,7 @@ public class PlantCartControl : MonoBehaviour
     private CanvasPlantSelection canvasPlantSelection;
     private Dictionary<PlantCartData, PlantCardUI> availableCardsMap = new Dictionary<PlantCartData, PlantCardUI>();
     private Dictionary<PlantCartData, PlantCardUI> selectedCardsMap = new Dictionary<PlantCartData, PlantCardUI>();
-
+    private int currentSun;
 
     public void OnInit()
     {
@@ -28,6 +28,18 @@ public class PlantCartControl : MonoBehaviour
         selectedPlantsContainer = canvasPlantSelection.GetSelectedPlantsContainer();
         PopulateAvailablePlants();
         canvasPlantSelection.Close(0f);
+    }
+
+    public void OnInitSun(int sun)
+    {
+        currentSun = sun;
+        canvasPlantSelection.UpdateSunUI(currentSun);
+    }
+
+    public void AddSun(int s)
+    {
+        currentSun += s;
+        UpdateSunUI(currentSun);
     }
 
     void PopulateAvailablePlants()
@@ -44,7 +56,7 @@ public class PlantCartControl : MonoBehaviour
     public void UpdateSunUI(int sun)
     {
         canvasPlantSelection.UpdateSunUI(sun);
-        UpdateCardAvailability(sun);
+        UpdateCardAvailability();
     }
 
     public void OnPlantCardClicked(PlantCartData cardData)
@@ -92,7 +104,7 @@ public class PlantCartControl : MonoBehaviour
         }
     }
 
-    public void UpdateCardAvailability(int currentSun)
+    public void UpdateCardAvailability()
     {
         foreach (KeyValuePair<PlantCartData, PlantCardUI> pair in selectedCardsMap)
         {
