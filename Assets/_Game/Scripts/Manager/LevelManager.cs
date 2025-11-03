@@ -2,58 +2,72 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
+    [SerializeField] private ZombieSpawnControl zombieSpawnControl;
+    [SerializeField] private PlayController playController;
+    [SerializeField] private GridController gridManager;
+    [SerializeField] private LawnMowerController lawnMowerController;
+    [SerializeField] private LevelData[] levelDatas;
+    private int curLevel = 0;
+    [SerializeField] private int sun;
+    [SerializeField] private PlantCartControl plantCartControl;
 
-    // khoi tao chi so
-    private void OnInit()
+    public void OnInit()
     {
-
+        sun = 1000;
+        plantCartControl.UpdateSunUI(sun);
     }
 
     public void OnPlay()
     {
         OnDespawn();
-
         OnLoadLevel();
-        GameManager.Instance.GamePlay();
-        
         OnInit();
     }
     
     public void OnStart()
     {
-        GameManager.Instance.GameStart();
+        plantCartControl.UpdateCardAvailability(sun);
     }
 
-    private void OnLoadLevel()
+    public void OnLoadLevel()
     {
-
+        zombieSpawnControl.OnInit(levelDatas[curLevel].waveDatas, levelDatas[curLevel].time);
+        gridManager.OnInit();
+        playController.OnInit();
+        lawnMowerController.OnInit();
+        plantCartControl.OnInit();
     }
 
     public void OnWin()
     {
-        GameManager.Instance.GameWin();
     }
 
     public void OnLose()
     {
-        GameManager.Instance.GameLose();
     }
 
     public void OnNextLevel()
     {
-        OnPlay();
+        // curLevel += 1;
     }
 
-    public void OnHome()
+    public void OnDespawn()
     {
-        OnDespawn();
-        GameManager.Instance.GameHome();
+        playController.OnDespawn();
+        zombieSpawnControl.OnDespawn();
+        gridManager.OnDespawn();
+        lawnMowerController.OnDespawn();
+        SimplePool.CollectAll();
     }
 
-
-    private void OnDespawn()
+    public void AddSun(int s)
     {
-    
+        sun += s;
+        plantCartControl.UpdateSunUI(sun);
+    }
+    public int GetSun()
+    {
+        return sun;
     }
     
 }

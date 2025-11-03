@@ -3,12 +3,18 @@ using UnityEngine;
 
 public class CanvasFail : UICanvas
 {
-    public void MainMenuButton()
+    [SerializeField] protected Animator animator;
+    public override void Close(float time)
     {
-        LevelManager.Instance.OnHome();
+        animator.SetTrigger("close");
+        Invoke(nameof(DelayClose), time + 0.3f);
+    }
+    public void DelayClose()
+    {
+        base.Close(0);
     }
     public void ReTryButton()
     {
-        LevelManager.Instance.OnPlay();
+        GameManager.Instance.OnRetry();
     }
 }

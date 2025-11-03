@@ -79,6 +79,12 @@ public static class SimplePool
     {
         return poolInstance.ContainsKey(poolType);
     }
+
+    public static int GetActivesCount(PoolType poolType)
+    {
+        int count = poolInstance[poolType].GetActivesCount();
+        return count;
+    }
 } 
 
 public class Pool
@@ -128,6 +134,11 @@ public class Pool
             unit.gameObject.transform.SetParent(parent);
             unit.gameObject.SetActive(false);
         }
+    }
+
+    public int GetActivesCount()
+    {
+        return actives.Count;
     }
 
     //thu thap tat ca phan tu ve pool

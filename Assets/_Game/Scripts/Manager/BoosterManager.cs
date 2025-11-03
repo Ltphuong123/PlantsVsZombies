@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class BoosterManager : Singleton<BoosterManager>
 {
-    
+    [SerializeField] private PlayController gameplayManager;
+    public void SelectShovel()
+    {
+        gameplayManager.Shovel();
+    }
 }
 

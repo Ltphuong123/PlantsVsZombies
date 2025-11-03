@@ -1,31 +1,34 @@
 using UnityEngine;
 
+public enum FX
+{
+    MenuClip=0,
+    IngameClip=1,
+    ChoisePlantClip=2,
+    PrePlayClip=3,
+    WinClip=4,
+    LoseClip=5,
+    ClickButtonClip=6,
+    PlantShoot=7,
+    BulletHitClip=8,
+    selectClip=9,
+    PlantingClip=10,
+    zombieClip=11,
+    lawnmowerClip=12,
+    explosionClip=13,
+    floopClip=14,
+    
+}
 public class SoundManager : Singleton<SoundManager>
 {
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource bgmSource;
 
-    [SerializeField] private AudioClip menuClip;
-    [SerializeField] private AudioClip ingameClip;
-    [SerializeField] private AudioClip backgroundClip;
-
-    [SerializeField] private AudioClip clickButtonClip;
-    [SerializeField] private AudioClip DropObjectToGrillClip;
-    [SerializeField] private AudioClip DropObjectToGrillNonDelyClip;
-    [SerializeField] private AudioClip[] FinishComboClips;
-    [SerializeField] private AudioClip PickupObjectFromGrillClip;
-    [SerializeField] private AudioClip winClip;
-    [SerializeField] private AudioClip loseClip;
-    [SerializeField] private AudioClip kholuaClip;
-    [SerializeField] private AudioClip phabangClip;
-    [SerializeField] private AudioClip boosterTimeClip;
-    [SerializeField] private AudioClip boosterSwapClip;
-    [SerializeField] private AudioClip GetRewardClip;
-    
+    [SerializeField] private AudioClip[] audioClips;
 
 
     [Header("Volumes")]
-    [SerializeField][Range(0f, 1f)] private float sfxVolume = 1f;
+    [SerializeField][Range(0f, 1f)] private float sfxVolume = 0.5f;
     [SerializeField][Range(0f, 1f)] private float bgmVolume = 0.5f;
 
     private bool isSoundEnabled = true;
@@ -44,7 +47,7 @@ public class SoundManager : Singleton<SoundManager>
 
         if (isMusicEnabled)
         {
-            PlayMenuMusic();
+            PlayBGM(FX.MenuClip, true);
         }
     }
 
@@ -79,7 +82,7 @@ public class SoundManager : Singleton<SoundManager>
             }
             else if (!bgmSource.isPlaying && bgmSource.clip == null)
             {
-                PlayMenuMusic();
+                PlayBGM(FX.MenuClip, true);
             }
         }
     }
@@ -101,7 +104,6 @@ public class SoundManager : Singleton<SoundManager>
         sfxVolume = Mathf.Clamp01(volume);
         sfxSource.volume = sfxVolume;
     }
-
     public void SetBgmVolume(float volume)
     {
         bgmVolume = Mathf.Clamp01(volume);
@@ -109,13 +111,9 @@ public class SoundManager : Singleton<SoundManager>
     }
     #endregion
 
-    #region BGM
-    public void PlayMenuMusic() => PlayBGM(menuClip, true);
-    public void PlayIngameMusic() => PlayBGM(ingameClip, true);
-    public void PlayBackgroundMusic() => PlayBGM(backgroundClip, true);
-
-    private void PlayBGM(AudioClip clip, bool loop = true)
+    public void PlayBGM(FX fX, bool loop = true)
     {
+        AudioClip clip = audioClips[(int)fX];
         if (!isMusicEnabled || clip == null) return;
 
         bgmSource.clip = clip;
@@ -128,32 +126,11 @@ public class SoundManager : Singleton<SoundManager>
     {
         bgmSource.Stop();
     }
-    #endregion
 
-    #region SFX
-    public void PlayClick() => PlaySFX(clickButtonClip);
-    public void PlayDrop() => PlaySFX(DropObjectToGrillClip);
-    public void PlayDrop2() => PlaySFX(DropObjectToGrillNonDelyClip);
-    public void PlayFinishCombo(int i)
+    public void PlaySFX(FX fX)
     {
-        if(i>FinishComboClips.Length) PlaySFX(FinishComboClips[FinishComboClips.Length-1]);
-        else PlaySFX(FinishComboClips[i-1]);
-    }
-    public void PlayPickup() => PlaySFX(PickupObjectFromGrillClip);
-    public void PlayWin() => PlaySFX(winClip);
-    public void PlayLose() => PlaySFX(loseClip);
-    public void PlayKholua() => PlaySFX(kholuaClip);
-    public void PlayPhabang() => PlaySFX(phabangClip);
-    public void PlayBoosterTime() => PlaySFX(boosterTimeClip);
-    public void PlayBoosterSwap() => PlaySFX(boosterSwapClip);
-    public void PlayGetRewardClip() => PlaySFX(GetRewardClip);
-
-
-
-    private void PlaySFX(AudioClip clip)
-    {
+        AudioClip clip = audioClips[(int)fX];
         if (!isSoundEnabled || clip == null) return;
         sfxSource.PlayOneShot(clip, sfxVolume);
     }
-    #endregion
 }
